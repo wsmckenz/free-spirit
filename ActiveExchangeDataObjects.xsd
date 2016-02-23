@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 sp1 (http://www.altova.com) by Chris Verret (EnergyIQ Exchange) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:aexDo="http://www.energyiqexchange.com/ActiveExchangeDataObjects" targetNamespace="http://www.energyiqexchange.com/ActiveExchangeDataObjects" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="AexDataset">
+		<xs:annotation>
+			<xs:documentation>Container for objects in support of ActiveExchange data transfer/exchange</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="WellOrigins" type="aexDo:WellOriginType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WellOrigin" type="aexDo:WellOriginType">
+		<xs:annotation>
+			<xs:documentation>Location on the surface of the earth where a drill bit is planned to penetrate or does penetrate the earth to establish or rework a well</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Wellbore" type="aexDo:WellboreType">
+		<xs:annotation>
+			<xs:documentation>Path of drilled footage from the Well Origin (top/start) to a terminating point (bottom/end)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Trajectory" type="aexDo:TrajectoryType">
+		<xs:annotation>
+			<xs:documentation>The trajectory (departure from vertical and direction of departure) of the wellbore; aka directional survey</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TrajectoryStation" type="aexDo:TrajectoryStationType">
+		<xs:annotation>
+			<xs:documentation>An individual trajectory station</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Marker" type="aexDo:MarkerType">
+		<xs:annotation>
+			<xs:documentation>Positional data on a formation, marker, contact or horizon (aka Top, aka Pick) within a well</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SpatialLocation" type="aexDo:SpatialLocationType">
+		<xs:annotation>
+			<xs:documentation>Represents the spatial location or coordinate of an object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LegalLocation" type="aexDo:LegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Container for a legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OffshoreLegalLocation" type="aexDo:OffshoreLegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Offshore legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TexasLegalLocation" type="aexDo:TexasLegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Texas legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CongressionalLegalLocation" type="aexDo:CongressionalLegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Congressional legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Extension" type="aexDo:ExtensionType">
+		<xs:annotation>
+			<xs:documentation>Used to extend any data object with implementation-specific attributes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Metadata" type="aexDo:MetadataType">
+		<xs:annotation>
+			<xs:documentation>Contains metadata for a data object (e.g., last updated by, last updated date, created by, created date)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Reference" type="aexDo:ReferenceType">
+		<xs:annotation>
+			<xs:documentation>Reference elements that contain Code, ShortName, LongName, Abbreviation, etc, such as Province/State, County, Depth Datum</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="WellOriginType">
+		<xs:annotation>
+			<xs:documentation>Location on the surface of the earth where a drill bit is planned to penetrate or does penetrate the earth to establish or rework a well</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to the Well by a regulatory agency (e.g., API, UWI)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name assigned to the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number assigned to the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LeaseName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name assigned to the lease by the regulatory agency with jurisdiction over the minerals</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LeaseNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number assigned to the lease by the regulatory agency with jurisdiction over the minerals</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurfaceSpatialLocation" type="aexDo:SpatialLocationType" minOccurs="0"/>
+			<xs:element name="SurfaceLegalLocation" type="aexDo:LegalLocationType" minOccurs="0"/>
+			<xs:element name="OriginalOperator" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The original operator of the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrentOperator" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The current operator of the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The country in which the Well is physically located (e.g., US)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProvinceState" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The province or state in which the Well is physically located (e.g., AB, TX)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="County" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The county in which the well is physically located (e.g., Webb); USA only</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Region" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The geographic region in which the Well is physically located</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Field" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The field the Well is assigned to for production purposes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Basin" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The basin or geologic region (with similar features) in which the Well is physically located</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="District" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The district in which the Well is physically located</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Environment" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of environment that in which the well is physically located (e.g., LAND, MARINE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InitialClassification" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Initial classification of the Well  (e.g., NEW_FIELD_WILDCAT, OUTPOST)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrentStatus" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Current status of the Well (e.g., PROPOSED, LICENSED, SPUDDED, DRILLING, COMPLETING, PRODUCING)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FluidType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of flUid associated with this Well (e.g., GAS, OIL, CONDENSATE, WATER)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevRefDatum" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The point from which all elevations are measured (e.g., MSL, LAT)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevRefDatumEpsgCode" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The EPSC Code associated with the point from which all elevations are measured (e.g., 5714 for MSL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GroundElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the ground at the Well site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WaterDepthDatum" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The point from which water depth is referenced (e.g., MSL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WaterDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Depth of the water at the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LicenseDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the Well was licensed or permitted</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnProductionDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date when this Well first begins producing flUids (comes on production)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpudDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the drilling operations commenced on the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Confidential" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies whether this Well is tight (confidential) or not</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConfidentialDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date confidential information may be released to the general public</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remarks associated with the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values (e.g., FT, M)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with elevation values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellboresRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading of Wellbores; URI could be used to subsequently return the set of associated Wellbores.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Wellbores" type="aexDo:WellboreType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated Wellbore data objects.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WellboreType">
+		<xs:annotation>
+			<xs:documentation>Path of drilled footage from the Well Origin (top/start) to a terminating point (bottom/end)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated parent object
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to the Wellbore by a regulatory agency (e.g., API, UWI)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellboreName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of this Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BHSpatialLocation" type="aexDo:SpatialLocationType" minOccurs="0"/>
+			<xs:element name="BHLegalLocation" type="aexDo:LegalLocationType" minOccurs="0"/>
+			<xs:element name="CurrentClassification" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Current classification of the Wellbore (e.g., NEW_FIELD_WILDCAT, OUTPOST)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrentStatus" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Status of this Wellbore (e.g., DRILLING, COMPLETING, PRODUCING)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FluidType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of flUid associated with this Wellbore (e.g., GAS, OIL, CONDENSATE, WATER)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProfileType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Shape or profile of this Wellbore (e.g., VERTICAL, HORIZONTAL, DIRECTIONAL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellboreType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of Wellbore (e.g., SIDETRACK, BYPASS, PILOT)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthDatum" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The point from which depths are measured (e.g., KB, RT, DF, CF)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthDatumElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation associated with the DepthDatum value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CasingFlangeElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the casing flange</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DerrickFloorElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the derrick floor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KellyBushingElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the kelly bushing (generally from sea level)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RotaryTableElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the rotary table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DrillerTotalDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The maximum depth of the Wellbore as reported by the driller or operator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KickoffPointDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measured depth of the kickoff point of the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlugbackDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The depth of the point that the Wellbore was plugged back when setting casing or completing the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The actual measurement along the Well path from reference datum to the deepest point in the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrueVerticalDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The true vertical depth measurement from reference datum to the deepest point, measured on a straight vertical line</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WhipstockDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The depth of the whipstock (used for sidetracking or directional drilling)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationAtTD" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Formation at Total Depth</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbandonmentDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the Wellbore was plugged and abandoned</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date on the completion report indicating the Well is ready to produce, inject or abandon</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FinalDrillDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the drilling operations were completed on this Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnProductionDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date when this Wellbore first begins producing flUids (comes on production)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RigReleaseDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date when the drilling ris released from operations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpudDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the drilling operations commenced on the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RigId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier associated with the drilling rig</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remarks associated with the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values (e.g., FT, M)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with elevation values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellboresRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading of Wellbores; URI could be used to subsequently return the set of associated Wellbores.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Wellbores" type="aexDo:WellboreType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated Wellbores data objects (children of this Wellbore)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrajectorysRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading of Trajectory data objects; URI could be used to subsequently return the set of associated Trajectory data objects.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Trajectorys" type="aexDo:TrajectoryType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated Trajectory (directional survey) data objects (children of this Wellbore)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MarkersRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading of Marker data objects; URI could be used to subsequently return the set of associated Marker data objects.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Markers" type="aexDo:MarkerType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated Marker data objects (children of this Wellbore)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LogCurvesRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading of Log Curve data objects; URI could be used to subsequently return the set of associated Log Curve data objects.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LogCurves" type="aexDo:LogCurveType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated (digital) Log Curve data objects (children of this Wellbore)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryType">
+		<xs:annotation>
+			<xs:documentation>The trajectory (departure from vertical and direction of departure) of the wellbore; aka directional survey</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated parent object
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to this Trajectory's Wellbore by a regulatory agency (e.g., API, UWI)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name or Identifier of this Wellbore Trajectory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeogCrsName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Geographic (Lat/Lon) CRS for this Trajectory (e.g., NAD27)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeogEpsgCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EPSG Code associated with the Geographic (Lat/Lon) CRS for this Trajectory (e.g., 4267 for NAD27) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProjCrsName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Projected (X/Y) CRS for this Trajectory (e.g., NAD83 / Texas Central (ftUS))</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProjEpsgCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EPSG Code associated with the Proujected (X/Y) CRS for this Trajectory (e.g., 2277 for NAD83 / Texas Central (ftUS)) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TopDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Minimum measured depth value (depth value where trajectory starts)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BaseDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Maximum measured depth value (depth value where trajectory ends)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthDatum" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The point from which depths are measured (e.g., KB, RT, DF, CF)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthDatumElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Reported elevation of the measurement datum from which depths are measured</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Company" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Company that acquired the trajectory (directional survey)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the trajectory (directional survey) acquisition was started</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the trajectory (directional survey) acquisition was completed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Class" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Classification of the survey (e.g., DIRECTIONAL - both inclination and azimuth; HOLE_DEVIATION - inclination only)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of survey (e.g., MWD, TOTCO, GYROSCOPIC)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quality" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Quality of the survey (e.g., EXCELLENT, GOOD, FAIR, POOR)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Preferred" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies this as the preferred trajectory for the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComputeMethod" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Method used to compute the position log from this Trajectory (e.g., minimum curvature, radius of curvature)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComputeState" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>State of this Trajectory (e.g., RAW, COMPUTED, WSR)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecordMode" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Method used to record (acquire) this trajectory (e.g., SINGLESHOT, MULTISHOT)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AzimuthNorthRef" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>North reference of the trajectory's angular measurements (e.g., GRID, NORTH, MAGNETIC)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MagneticDeclination" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Value of the declination angle measured from True North to referenced north at the survey location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GridConvergenceAngle" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Angular difference between True North and Grid North at the Well's location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AzimuthVerticalSection" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Azimuth or direction of the vertical section</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TiePtMd" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measured Depth value at the Tie Point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TiePtAzimuth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Azimuth value at the Tie Point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TiePtInclination" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inclination value it the Tie Point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TiePtTvd" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>True Vertical Depth value at the Tie Point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TiePtXOffset" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>XOffset value xot the Tie Point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TiePtYOffset" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>YOffset value yot the Tie Point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remark associated with the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with elevation values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DistanceUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with distance (X and Y offset) values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AngularUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with angular (azimuth and inclination) values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Stations" type="aexDo:TrajectoryStationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TrajectoryStationType">
+		<xs:annotation>
+			<xs:documentation>An individual trajectory station</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated WellboreTrajectory object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StationId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier of the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PointType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of station (e.g., measured, extrapolated beyond survey, tie-in)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Md" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measured Depth for the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Azimuth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Azimuth (angle in degrees clockwise from a north refrence) value for the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Inclination" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inclination (angle of deviation away from vertical axis) value for the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tvd" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>True Vertical Depth for the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XOffset" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>X Offset (in east or west direction) for the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="YOffset" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Y Offset (in north or south direction) for the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VerticalSection" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Length of the section of a wellbore path in a vertical plane</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DogLegSeverity" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Rate of change in the wellbore inclination at the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Latitude" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Latitude value (angular degrees) of the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Longitude" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Longitude value (angular degrees) of the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeltaLat" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Change in latitude value (angular degrees) at the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeltaLon" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Change in longitude value (angular degrees) at the station</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AngularUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with angular (azimuth and inclination) values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DistanceUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with distance (offset) values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MarkerType">
+		<xs:annotation>
+			<xs:documentation>Positional data on a formation, marker, contact or horizon (aka Top, aka Pick) within a well</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated parent object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to this Marker's Wellbore by a regulatory agency (e.g., API, UWI)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the picked formation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Date" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the formation was picked</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OccurenceNum" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The number of occurrence of this Pick in the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Md" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measured depth from the surface to the top of the picked formation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tvd" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>True vertical depth from the surface datum to the top of the picked formation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tvdss" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>True vertical depth subsea from the surface datum to the top of the picked formation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Interpreter" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The user or entity who was the Source of this picked formation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Qualifier" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Additional information to qualify the Pick (e.g., logged, missing, estimated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quality" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Quality or degree of confidence in the Pick (e.g., poor, good, fair, excellent)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The type of Pick / Marker (e.g., working, final, proposed, prognose)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remarks associated with this Pick / Marker</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LogCurveType">
+		<xs:annotation>
+			<xs:documentation>Digital Log Curve data object</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated parent object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to this Log Curve's Wellbore by a regulatory agency (e.g., API, UWI)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RunNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Logging run number in which this curve was acquired</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mnemonic" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mnemonic associated with this curve (e.g., GR, RHOB, ILD)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Alias" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>An alias that may be associated with this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Version" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Version number of this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Class" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Classiciation associated with this curve based on its properties (e.g., Gamma Ray, Neutron, Resistivity, Caliper)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndexUnits" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with Index values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndexType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of index values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthMode" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>For a depth-based curve, mode of depth values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurveUnits" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with the log curve values (e.g., GAPI)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumSamples" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number of samples contained in the log curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinIndex" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Minimum index value at which values were measured for this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaxIndex" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Maximum index value at which values were measured for this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinValue" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Value of the minimum reading for this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaxValue" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Value of the maximum reading for this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SampleIncrement" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Increment (in depth or time) between samples; specifically for a regularly-sampled curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NullValue" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Value that represents a NULL or missing value (e.g., -999.25)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AcquireDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the log curve was acquired</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quality" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Qualify of the curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ServiceCompany" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Company who logged this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ApiCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>API Code associated with this type of curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Narrative description of this curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Indexes" type="xs:float" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Array of index values - only populated for an irregularly-sampled curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Values" type="xs:float" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Array of curve values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remarks associated with this Log Curve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SpatialLocationType">
+		<xs:annotation>
+			<xs:documentation>Represents the spatial location or coordinate of an object</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LatitudeOrYCoord" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Latitude (angular degrees) or Y Coordinate for the location/coordinate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LongitudeOrXCoord" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Longitude (angular degrees) or X Coordinate for the location/coordinate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CrsName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Coordinate Reference System for the location/coordinate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CrsCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EPSG Code associated with the CRS for the location/coordinate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Extension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Container for a legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LegalSurveyType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Survey type of the legal description for this well (e.g., CONGRESS, TEXAS, OFFSHORE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:OffshoreLegalLocation" minOccurs="0"/>
+			<xs:element ref="aexDo:TexasLegalLocation" minOccurs="0"/>
+			<xs:element ref="aexDo:CongressionalLegalLocation" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OffshoreLegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Offshore legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this Legal Description object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AreaCode" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Offshore area code representing the  protraction area that contains the well/wellbore based on latitude and longitude</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Block" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number identifying the offshore concession area that contains the well/wellbore based on latitude and longitude</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlockAddition" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Alpha prefix to the block number ("A" in OCS addition areas)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlockModifier" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Alpha character suffix on the block number distinguishing it from others in the same area</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSStartLine" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>North-South starting lines for offset distances (e.g., FSL, FNL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSFootage" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distance measured from a north or south reference line to the well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EWStartLine" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>East-West starting lines for offset distances (e.g., FEL, FWL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EWFootage" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distance measured from an east or west reference line to the well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FootageOrigin" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Point of origin used in measuring survey footage calls to a well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OCSNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number assigned to an offshore well in a Federal territory on the Outer Continental Shelf (OCS)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UTMQuadrant" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number identifying the alpha UTM quadrant, zone number and numeric quadrant (e.g., NG15-2)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remark associated with this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FootageUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with footage values (e.g., FT, M)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TexasLegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Texas legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this Legal Description object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbstractNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number assigned by the Texas GLO to the blocks and survey in a county</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Survey" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name identifying the Texas survey within a county</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Block" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Block number within a Texas county</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Section" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Section within a Texas township</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SectionFraction" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number identifying a fractional part of a Section</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="League" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Alphanumeric code identifying the league subdivision of a survey (Spanish Land Grant)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Labor" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Alphanumeric code identifying the labor subdivision of a survey (Spanish Land Grant)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lot" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number identifying the subdivision of a Section</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Township" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number identifying the township subdivision of a Texas survey</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSStartLine" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>North-South starting lines for offset distances (e.g., FSL, FNL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSFootage" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distance measured from a north or south reference line to the well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EWStartLine" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>East-West starting lines for offset distances (e.g., FEL, FWL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EWFootage" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distance measured from an east or west reference line to the well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FootageOrigin" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Point of origin used in measuring survey footage calls to a well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpotCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Code identifying a quartered division of a section (e.g., NW SE NE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remark associated with this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FootageUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with footage values (e.g., FT, M)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CongressionalLegalLocationType">
+		<xs:annotation>
+			<xs:documentation>Congressional legal description associated with a Well or Wellbore</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this Legal Description object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrincipalMeridian" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Principal Meridian associated with this legal description (e.g., Chicksaw 1833)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Township" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number designating the township division north or south of the baseline</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TownshipDirection" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Direction associated with the township division (e.g., N, S)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Range" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Section within a Texas Number designating a whole or partial range division east or west of the principal meridian</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RangeDirection" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Direction associateed with the range division (e.g., E, W)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Section" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number designating the section within a township (values range from 1 to 36)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SectionSuffix" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Letter suffix identifying the subsection with a section (e.g., A for section 23A)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LotNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number assigned to a lot</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSStartLine" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>North-South starting lines for offset distances (e.g., FSL, FNL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSFootage" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distance measured from a north or south reference line to the well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EWStartLine" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>East-West starting lines for offset distances (e.g., FEL, FWL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EWFootage" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distance measured from an east or west reference line to the well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FootageOrigin" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Point of origin used in measuring survey footage calls to a well location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpotCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Code identifying a quartered division of a section (e.g., NW SE NE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remark associated with this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FootageUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with footage values (e.g., FT, M)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExtensionType">
+		<xs:annotation>
+			<xs:documentation>Used to extend any data object with implementation-specific attributes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the extended attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Value" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Value of the extended attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValueUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with the attribute's value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MetadataType">
+		<xs:annotation>
+			<xs:documentation>Contains metadata for a data object (e.g., last updated by, last updated date, created by, created date)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LastUpdatedBy" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>User who last updated this object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastUpdatedDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date/time this object was last updated</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CreatedBy" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>User who created this object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CreatedDate" type="xs:date" nillable="true">
+				<xs:annotation>
+					<xs:documentation>Date/time this object was created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferenceType">
+		<xs:annotation>
+			<xs:documentation>Reference elements that contain Code, ShortName, LongName, Abbreviation, etc, such as Province/State, County, Depth Datum</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of Reference object (e.g., PROV_STATE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Code" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Code associated with this Reference object (e.g., 42)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShortName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Short Name associated with this Reference object (e.g., TX)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LongName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Long Name associated with this Reference object (e.g., TEXAS)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Abbreviation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Abbreviation associated with this Reference object (e.g., TX)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Description associated with this Reference object (e.g., The United State of Texas)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
