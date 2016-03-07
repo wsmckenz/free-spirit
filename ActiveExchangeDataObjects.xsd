@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2016 sp1 (http://www.altova.com) by Chris Verret (EnergyIQ Exchange) -->
+<!-- edited with XMLSpy v2016 sp1 (x64) (http://www.altova.com) by Chris Verret (EnergyIQ Exchange) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:aexDo="http://www.energyiqexchange.com/ActiveExchangeDataObjects" targetNamespace="http://www.energyiqexchange.com/ActiveExchangeDataObjects" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
 	<xs:element name="AexDataset">
 		<xs:annotation>
@@ -74,6 +74,16 @@
 	<xs:element name="Reference" type="aexDo:ReferenceType">
 		<xs:annotation>
 			<xs:documentation>Reference elements that contain Code, ShortName, LongName, Abbreviation, etc, such as Province/State, County, Depth Datum</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="WellboreCompletion" type="aexDo:WellboreCompletionType">
+		<xs:annotation>
+			<xs:documentation>A set of one or more wellbore contact intervals that function as a single unit to produce or inject fluids</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Completion" type="aexDo:CompletionType">
+		<xs:annotation>
+			<xs:documentation>a completion interval associated with a Wellbore Completion</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="WellOriginType">
@@ -293,6 +303,11 @@
 					<xs:documentation>Name of this Wellbore</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="WellboreNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Number of this Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="BHSpatialLocation" type="aexDo:SpatialLocationType" minOccurs="0"/>
 			<xs:element name="BHLegalLocation" type="aexDo:LegalLocationType" minOccurs="0"/>
 			<xs:element name="CurrentClassification" type="aexDo:ReferenceType" minOccurs="0">
@@ -443,6 +458,16 @@
 			<xs:element name="Wellbores" type="aexDo:WellboreType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Set of associated Wellbores data objects (children of this Wellbore)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellboreCompletionsRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading or subsequent loading of Wellbore Completions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WellboreCompletions" type="aexDo:WellboreCompletionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated Wellbore Completion data objects (children of this Wellbore)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TrajectorysRef" type="xs:string" minOccurs="0">
@@ -755,6 +780,16 @@
 					<xs:documentation>Longitude value (angular degrees) of the station</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="EwDirection" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Qualifier for the X-OFFSET to denote East or West direction of the offset (values: E, W)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NsDirection" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Qualifier for the Y-OFFSET to denote North or South direction of the offset (values: N, S)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="DeltaLat" type="xs:float" nillable="true" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Change in latitude value (angular degrees) at the station</xs:documentation>
@@ -778,6 +813,135 @@
 			<xs:element name="DistanceUom" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Units of measure associated with distance (offset) values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WellboreCompletionType">
+		<xs:annotation>
+			<xs:documentation>A set of one or more wellbore contact intervals that function as a single unit to produce or inject fluids</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated (parent) Wellbore Completion object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to the Completion record by a regulatory agency (e.g., API)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BhSpatialLocation" type="aexDo:SpatialLocationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Bottom Hole spatial location for the Completion (includes latitude, longitude and CRS)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrentClassification" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Current classification of the Completion</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrentStatus" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Status of this Completion (e.g., drilling, completing, producing)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FluidType" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of fluid associated with this Completion (e.g., GAS, OIL, CONDENSATE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrentOperator" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The current operator of the Well</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthDatum" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The point from which depths are measured (e.g., KB, RT, DF, CF)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthDatumElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation associated with the DepthDatum value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GroundElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the ground at the Well site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DerrickFloorElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the derrick floor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KellyBushingElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the kelly bushing</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RotaryTableElev" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elevation of the rotary table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrueVerticalDepth" type="xs:float" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The true vertical depth measurement from reference datum to the deepest point, measured on a straight vertical line</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpudDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date the drilling operations commenced on the Wellbore</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RigOnSiteDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date when the drilling rig is moved onto the well site</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RigReleaseDate" type="xs:date" nillable="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date when the drilling rig released from operations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remarks associated with the Completion</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with elevation values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Completions" type="aexDo:CompletionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Set of associated Completion data objects (children of this Wellbore Completion record)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionsRef" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains an optional URI to support lazy-loading or subsequent loading of Completion records</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
@@ -862,6 +1026,80 @@
 			<xs:element name="Remark" type="xs:string" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Remarks associated with this Pick / Marker</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Units of measure associated with depth values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="aexDo:Metadata" minOccurs="0"/>
+			<xs:element ref="aexDo:Extension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompletionType">
+		<xs:annotation>
+			<xs:documentation>A completion interval associated with a Wellbore Completion</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of this data object (system-generated)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UidParent" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the associated (parent) Wellbore Completion object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Source" type="aexDo:ReferenceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Source (individual, company or government agency) of this data object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Sequential observation number for this completed interval</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GovernmentId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Identifier assigned to the Wellbore Completion record by a regulatory agency (e.g., API)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TopDepth" type="xs:float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measured depth from the surface to the top of the completion interval</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BaseDepth" type="xs:float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measured depth from the surface to the bottom of the completion interval</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionFormation" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the formation for this Completion</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of completion (e.g., Open Hole, Gravel Pack, Perforation)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date on the completion report indicating the Well is ready to produce, inject or abandon</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompletionMethod" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Method (type of aperture) that was used to complete the Well (produce fluid into the tubing)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Remark" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Remarks associated with the Completion</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="DepthUom" type="xs:string" minOccurs="0">
